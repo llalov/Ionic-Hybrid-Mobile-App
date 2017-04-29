@@ -46,7 +46,7 @@ angular.module('starter', [
           $state.go(toState.name, toParams, { reload: true });
           $scope.closeLogin();
         }).catch(function(error) {
-          $scope.errorMessage = "Incorrect username or/and passowrd";
+          $scope.errorMessage = "Грешно потребителско име или парола";
           $scope.$digest();
         });
       };
@@ -89,11 +89,11 @@ angular.module('starter', [
 
           if (user) {
             return user.logout().then(function() {
-              $state.go('app.books');
+              $state.go('app.events');
             });
           }
 
-          $state.go('app.books');
+          $state.go('app.events');
         });
       }
     })
@@ -106,17 +106,17 @@ angular.module('starter', [
         activeUserRequired: true
       }
     })
-    .state('app.books', {
-      url: '/books',
+    .state('app.events', {
+      url: '/events',
       views: {
         'menuContent': {
-          templateUrl: 'templates/books.html',
-          controller: 'BooksCtrl'
+          templateUrl: 'templates/events.html',
+          controller: 'EventsCtrl'
         }
       }
     });
 
 
   // If none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/books');
+  $urlRouterProvider.otherwise('/app/events');
 });

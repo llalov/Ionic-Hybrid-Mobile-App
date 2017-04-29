@@ -4,19 +4,19 @@ angular.module('starter.controllers', [])
   // App Controller
 })
 
-.controller('BooksCtrl', function($scope, $kinvey) {
-  // var store = $kinvey.DataStore.collection('books');
-  // store.useDeltaFetch = false;
+.controller('EventsCtrl', function($scope, $kinvey) {
+  var store = $kinvey.DataStore.collection('events');
+  store.useDeltaFetch = false;
 
-  // $scope.refresh = function() {
-  //   store.find().subscribe(function(books) {
-  //     $scope.books = books;
-  //     $scope.$digest();
-  //   });
-  // };
+  $scope.refresh = function() {
+    store.find().subscribe(function(events) {
+      $scope.events = events;
+      $scope.$digest();
+    });
+  };
 
-  // $scope.$on('$ionicView.enter', function() {
-  //   $scope.books = [];
-  //   $scope.refresh();
-  // });
+  $scope.$on('$ionicView.enter', function() {
+    $scope.events = [];
+    $scope.refresh();
+  });
 });
