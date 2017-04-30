@@ -1,9 +1,10 @@
 // Kinvey Ionic Starter App
 
-angular.module('starter', [
+angular.module('app', [
   'kinvey',
   'ionic',
-  'starter.controllers'
+  'app.home',
+  'app.events'
 ])
 
 .run(function($ionicPlatform, $kinvey, $rootScope, $state, $ionicModal, $timeout) {
