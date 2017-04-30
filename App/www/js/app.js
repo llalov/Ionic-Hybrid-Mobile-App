@@ -4,7 +4,9 @@ angular.module('app', [
   'kinvey',
   'ionic',
   'app.home',
-  'app.events'
+  'app.events',
+  'app.blog',
+  'app.user'
 ])
 
 .run(function($ionicPlatform, $kinvey, $rootScope, $state, $ionicModal, $timeout) {
@@ -115,8 +117,25 @@ angular.module('app', [
           controller: 'EventsCtrl'
         }
       }
+    })
+    .state('app.blog', {
+      url: '/blog',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/blog.html',
+          controller: 'EventsCtrl'
+        }
+      }
+    })
+    .state('app.me', {
+      url: '/me',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/my-profile.html',
+          controller: 'UserCtrl'
+        }
+      }
     });
-
 
   // If none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/events');
