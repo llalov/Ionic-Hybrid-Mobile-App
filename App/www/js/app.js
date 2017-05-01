@@ -6,10 +6,10 @@ angular.module('app', [
   'app.home',
   'app.events',
   'app.blog',
-  'app.user'
+  'app.user'  
 ])
 
-.run(function($ionicPlatform, $kinvey, $rootScope, $state, $ionicModal, $timeout) {
+.run(function($ionicPlatform, $kinvey, $rootScope, $state, $ionicModal, $timeout, $location) {
   // Show a login view if there is not an active user but
   // the toState requires a user to be active.
   var stateChangeStartListener = $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
@@ -20,14 +20,29 @@ angular.module('app', [
       // Create a new $scope
       var $scope = $rootScope.$new();
       $scope.loginData = {};
-      $scope.errorMessage = null;
+      $scope.errorMessageSignup = null;
+      $scope.errorMessageLogin = null;
 
+      $scope.showRegForm = function() {
+        $scope.signupForm = true;
+        $scope.loginForm = false;
+        $scope.introTitle = 'Регистрация'
+      };
+            
+      $scope.hideRegForm = function() {
+        $scope.signupForm = false;
+        $scope.loginForm = true;
+        $scope.introTitle = 'Вход'
+      };
+      
+      $scope.hideRegForm();
+      
       // Create the login modal and show it
       $ionicModal.fromTemplateUrl('templates/login.html', {
         scope: $scope,
         animation: 'slide-in-up',
         backdropClickToClose: false,
-        hardwareBackButtonClose: false
+        hardwareBackButtonClose: true
       }).then(function(modal) {
         modal.show();
         $scope.modal = modal;
@@ -39,19 +54,38 @@ angular.module('app', [
           $scope.$destroy();
         });
       };
+      $scope.closeSignup = function() {
+        $scope.modal.hide().then(function() {
+          $scope.$destroy();
+        });
+      };
 
       // Perform the login action when the user submits the login form
       $scope.doLogin = function() {
-        $scope.errorMessage = null;
+        $scope.errorMessageLogin = null;
 
         // Login a user and close the modal
-        $kinvey.User.login($scope.loginData).then(function() {
+        $kinvey.User.login($scope.loginData).then(function() { 
           $state.go(toState.name, toParams, { reload: true });
           $scope.closeLogin();
         }).catch(function(error) {
-          $scope.errorMessage = "Грешно потребителско име или парола";
+          $scope.errorMessageLogin = "Грешно потребителско име или парола";
           $scope.$digest();
         });
+      };
+
+      //Perform the signup action when the  user submits the signup form
+      $scope.doRegister = function (data) {
+        $scope.errorMessageSignup = null;
+
+        $kinvey.User.signup(data)
+          .then(function() {
+            $state.go(toState.name, toParams, { reload: true });
+            $scope.closeSignup();
+          }).catch(function(error){
+            $scope.errorMessageSignup = "Потребителското име е заето";
+            $scope.$digest();
+          });
       };
 
       // Remove the modal when the $scope is destroyed

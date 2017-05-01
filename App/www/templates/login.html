@@ -1,9 +1,11 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">Вход</h1>
+    <h1 class="title">{{introTitle}}</h1>
   </ion-header-bar>
+
   <ion-content>
-    <form ng-submit="doLogin()">
+    <!--SIGN IN-->
+    <form id="loginForm" ng-if="loginForm" ng-submit="doLogin()">
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Потребителско име:</span>
@@ -15,11 +17,42 @@
         </label>
         <label class="item">
           <p class="text-center">
-            <span class="assertive">{{errorMessage}}</span>
+            <span class="assertive">{{errorMessageLogin}}</span>
           </p>
           <button class="button button-block button-positive" type="submit">Вход</button>
         </label>
       </div>
+      <p class="text-center">
+        <a class="btn btn-primary" ng-click="showRegForm()">Регистрирай се</a>
+      </p>
     </form>
+      
+    <!--REGISTRATION-->
+    <form id="signupForm" ng-if="signupForm" ng-submit="doRegister(signupData)">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Потребителско име:</span>
+          <input type="text" ng-model="signupData.username">
+        </label>
+        <!--<label class="item item-input">
+          <span class="input-label">Е-мейл:</span>
+          <input type="email" placeholder="" ng-model="signupData.email">
+        </label>-->
+        <label class="item item-input">
+          <span class="input-label">Парола:</span>
+          <input type="password"  ng-model="signupData.password">
+        </label>
+      <label class="item">
+        <p class="text-center">
+            <span class="assertive">{{errorMessageSignup}}</span>
+        </p>
+        <button class="button button-block button-balanced" type="submit">Регистрирай се</button>
+      </label>
+      </div>
+      <p class="text-center">
+        <a class="btn btn-primary" ng-click="hideRegForm()">Влез</a>
+      </p>
+    </form>
+
   </ion-content>
 </ion-modal-view>
