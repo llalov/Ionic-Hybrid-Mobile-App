@@ -6,7 +6,7 @@ angular.module('app', [
   'app.home',
   'app.events',
   'app.blog',
-  'app.user'  
+  'app.me'
 ])
 
 .run(function($ionicPlatform, $kinvey, $rootScope, $state, $ionicModal, $timeout, $location) {
@@ -162,7 +162,7 @@ angular.module('app', [
       views: {
         'menuContent': {
           templateUrl: 'templates/my-profile.html',
-          controller: 'UserCtrl'
+          controller: 'MyProfileCtrl'
         }
       }
     });
