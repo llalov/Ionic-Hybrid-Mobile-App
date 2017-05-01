@@ -49,25 +49,20 @@ angular.module('app', [
       });
 
       // Hide the modal and destroy the $scope
-      $scope.closeLogin = function() {
-        $scope.modal.hide().then(function() {
-          $scope.$destroy();
-        });
-      };
-      $scope.closeSignup = function() {
+      $scope.closeModal = function() {
         $scope.modal.hide().then(function() {
           $scope.$destroy();
         });
       };
 
       // Perform the login action when the user submits the login form
-      $scope.doLogin = function() {
+      $scope.doLogin = function(data) {
         $scope.errorMessageLogin = null;
 
         // Login a user and close the modal
-        $kinvey.User.login($scope.loginData).then(function() { 
+        $kinvey.User.login(data).then(function() { 
           $state.go(toState.name, toParams, { reload: true });
-          $scope.closeLogin();
+          $scope.closeModal();
         }).catch(function(error) {
           $scope.errorMessageLogin = "Грешно потребителско име или парола";
           $scope.$digest();
@@ -75,14 +70,15 @@ angular.module('app', [
       };
 
       //Perform the signup action when the  user submits the signup form
-      $scope.doRegister = function (data) {
+      $scope.doRegister = function(data) {
         $scope.errorMessageSignup = null;
 
+        // Signup user and close the modal
         $kinvey.User.signup(data)
           .then(function() {
             $state.go(toState.name, toParams, { reload: true });
-            $scope.closeSignup();
-          }).catch(function(error){
+            $scope.closeModal();
+          }).catch(function(error) {
             $scope.errorMessageSignup = "Потребителското име е заето";
             $scope.$digest();
           });
