@@ -165,6 +165,15 @@ angular.module('app', [
           controller: 'MyProfileCtrl'
         }
       }
+    })
+    .state('app.editMe', {
+      url: '/me/edit',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/edit-profile.html',
+          controller: 'MyProfileCtrl'
+        }
+      }
     });
 
   // If none of the above states are matched, use this as the fallback
