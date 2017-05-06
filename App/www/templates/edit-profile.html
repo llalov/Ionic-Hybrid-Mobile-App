@@ -1,19 +1,20 @@
-<ion-view view-title="Редактирай Профила">
+<html>  
+    <ion-view view-title="Редактирай Профила">
     <div class="list">
         <br/>
         <br/>
         <br/>
         <br/>
-        <form id="editMe" enctype="multipart/form-data" method="post" name="fileUpload">
+        <form enctype="multipart/form-data">
             <label class="item item-input">
                 <span class="input-label">Качи файл:</span>
-                <input id="file" multiple type="file" />
+                <input id="file" type="file" name="file" />
             </label>
             <label class="item item-input">
                 <span class="input-label">Събмит дейба</span>
-                <input type="submit" value="Upload" />
+                <button value="Upload" ng-click="uploadFile()">Upload</button>
             </label>
         </form>
     </div>
-</ion-view>
-
+ </ion-view>
+</html>
