@@ -5,5 +5,8 @@
     "ionic": "driftyco/ionic-bower#1.3.0",
     "kinvey-angular-sdk": "^3.0.0",
     "platform.js": "platform#^1.3.4"
+  },
+  "dependencies": {
+    "angular-loading": "^0.1.4"
   }
 }

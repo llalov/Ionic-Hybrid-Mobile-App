@@ -5,7 +5,8 @@
         <br/>
         <br/>
         <br/>
-        <form enctype="multipart/form-data">
+        <div dw-loading="uploadPic" dw-loading-options="{text: 'Loading...'}">
+            <form enctype="multipart/form-data">
             <label class="item item-input">
                 <span class="input-label">Качи файл:</span>
                 <input id="file" type="file" name="file" />
@@ -15,6 +16,7 @@
                 <button value="Upload" ng-click="changeProfilePic()">Смени снимката</button>
             </label>
         </form>
+        </div>
     </div>
  </ion-view>
 </html>

@@ -6,7 +6,8 @@ angular.module('app', [
   'app.home',
   'app.events',
   'app.blog',
-  'app.me'
+  'app.me',
+  'darthwade.dwLoading'
 ])
 
 .run(function($ionicPlatform, $kinvey, $rootScope, $state, $ionicModal, $timeout, $location) {
