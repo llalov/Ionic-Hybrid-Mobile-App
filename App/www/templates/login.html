@@ -5,15 +5,15 @@
 
   <ion-content>
     <!--SIGN IN-->
-    <form id="loginForm" ng-if="loginForm" ng-submit="doLogin(loginData)">
+    <form id="loginForm" name="loginForm" ng-if="loginForm" ng-submit="doLogin(loginData)">
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Потребителско име:</span>
-          <input type="text" ng-model="loginData.username">
+          <span class="input-label">E-mail:</span>
+          <input type="email" name="username" ng-model="loginData.username" required="required">
         </label>
         <label class="item item-input">
           <span class="input-label">Парола:</span>
-          <input type="password" ng-model="loginData.password">
+          <input type="password" ng-model="loginData.password" required="required">
         </label>
         <label class="item">
           <p class="text-center">
@@ -28,20 +28,19 @@
     </form>
       
     <!--REGISTRATION-->
-    <form id="signupForm" ng-if="signupForm" ng-submit="doRegister(signupData)">
+    <form id="signupForm" name="signupForm" ng-if="signupForm" ng-submit="doRegister(signupData)">
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Потребителско име:</span>
-          <input type="text" ng-model="signupData.username">
+          <span class="input-label">E-mail:</span>
+          <input type="email" name="username" placeholder="example@domain.com" ng-model="signupData.username" required="required">
         </label>
-        <!--<label class="item item-input">
-          <span class="input-label">Е-мейл:</span>
-          <input type="email" placeholder="" ng-model="signupData.email">
-        </label>-->
+        <!--<p class="customError" ng-show="signupForm.username.$invalid">*Моля въведете валиден e-mail адрес.</p>-->
+
         <label class="item item-input">
           <span class="input-label">Парола:</span>
-          <input type="password"  ng-model="signupData.password">
+          <input type="password" name="password" placeholder="минимум 5 символа" ng-minlength=5 ng-model="signupData.password" required="required">
         </label>
+        <!--<p class="customError" ng-show="signupForm.password.$invalid">*Паролата трябва да e поне 5 символа.</p>-->
       <label class="item">
         <p class="text-center">
             <span class="assertive">{{errorMessageSignup}}</span>

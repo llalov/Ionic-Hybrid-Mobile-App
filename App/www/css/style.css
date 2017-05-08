@@ -2,3 +2,13 @@
 .text-center {
   text-align: center;
 }
+
+/*img {
+  background: url('../img/loading.gif');
+}*/
+
+.customError {
+  padding-left: 20%;
+  font-size: 14px;
+  color: #808080;
+}

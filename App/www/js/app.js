@@ -65,7 +65,7 @@ angular.module('app', [
           $state.go(toState.name, toParams, { reload: true });
           $scope.closeModal();
         }).catch(function(error) {
-          $scope.errorMessageLogin = "Грешно потребителско име или парола";
+          $scope.errorMessageLogin = "Грешен e-mail или парола.";
           $scope.$digest();
         });
       };
