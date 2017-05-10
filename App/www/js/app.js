@@ -23,6 +23,8 @@ angular.module('app', [
       $scope.loginData = {};
       $scope.errorMessageSignup = null;
       $scope.errorMessageLogin = null;
+      $scope.errorMessageSignupEmail = null;
+      $scope.errorMessageSignupPass = null;
 
       $scope.showRegForm = function() {
         $scope.signupForm = true;
@@ -73,16 +75,22 @@ angular.module('app', [
       //Perform the signup action when the  user submits the signup form
       $scope.doRegister = function(data) {
         $scope.errorMessageSignup = null;
-
-        // Signup user and close the modal
-        $kinvey.User.signup(data)
-          .then(function() {
-            $state.go(toState.name, toParams, { reload: true });
-            $scope.closeModal();
-          }).catch(function(error) {
-            $scope.errorMessageSignup = "Потребителското име е заето";
-            $scope.$digest();
+        var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!emailRegex.test(data['username'])) {
+           $scope.errorMessageSignupEmail = "Невалиден e-mail.";
+        }
+        else {
+          $kinvey.User.signup(data)
+            .then(function() {
+              $state.go(toState.name, toParams, { reload: true });
+              $scope.closeModal();
+            }).catch(function(error) {
+              $scope.errorMessageSignup = "Вече съществува такъв e-mail.";
+              $scope.$digest();
           });
+        }
+        // Signup user and close the modal
+    
       };
 
       // Remove the modal when the $scope is destroyed

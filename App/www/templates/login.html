@@ -19,7 +19,7 @@
           <p class="text-center">
             <span class="assertive">{{errorMessageLogin}}</span>
           </p>
-          <button class="button button-block button-positive" type="submit">Вход</button>
+          <button ng-disabled="loginForm.$invalid" class="button button-block button-positive" type="submit">Вход</button>
         </label>
       </div>
       <p class="text-center">
@@ -32,20 +32,20 @@
       <div class="list">
         <label class="item item-input">
           <span class="input-label">E-mail:</span>
-          <input type="email" name="username" placeholder="example@domain.com" ng-model="signupData.username" required="required">
+          <input type="text" name="username" placeholder="example@domain.com" ng-model="signupData.username">
         </label>
-        <!--<p class="customError" ng-show="signupForm.username.$invalid">*Моля въведете валиден e-mail адрес.</p>-->
-
+         <p class="text-center">
+            <span class="assertive">{{errorMessageSignupEmail}}</span>
+        </p>
         <label class="item item-input">
           <span class="input-label">Парола:</span>
           <input type="password" name="password" placeholder="минимум 5 символа" ng-minlength=5 ng-model="signupData.password" required="required">
         </label>
-        <!--<p class="customError" ng-show="signupForm.password.$invalid">*Паролата трябва да e поне 5 символа.</p>-->
       <label class="item">
         <p class="text-center">
             <span class="assertive">{{errorMessageSignup}}</span>
         </p>
-        <button class="button button-block button-balanced" type="submit">Регистрирай се</button>
+        <button ng-disabled="signupForm.$invalid" class="button button-block button-balanced" type="submit">Регистрирай се</button>
       </label>
       </div>
       <p class="text-center">
