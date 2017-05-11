@@ -45,7 +45,7 @@ angular.module('app', [
         scope: $scope,
         animation: 'slide-in-up',
         backdropClickToClose: false,
-        hardwareBackButtonClose: true
+        hardwareBackButtonClose: false
       }).then(function(modal) {
         modal.show();
         $scope.modal = modal;

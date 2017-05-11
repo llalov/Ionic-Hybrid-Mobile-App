@@ -1,22 +1,17 @@
-<html>  
-    <ion-view view-title="Редактирай Профила">
-    <div class="list">
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <div dw-loading="uploadPic" dw-loading-options="{text: '', spinnerOptions: {radius: 15, length: 11, fps: 15}}">
-            <form enctype="multipart/form-data">
-            <label class="item item-input">
-                <span class="input-label">Качи файл:</span>
-                <input id="file" type="file" name="file" />
-            </label>
-            <label class="item item-input">
-                <span class="input-label"> </span>
-                <button value="Upload" ng-click="changeProfilePic()">Смени снимката</button>
-            </label>
-        </form>
-        </div>
-    </div>
+<ion-view view-title="Редактирай Профила">
+    <ion-content>
+            <div dw-loading="uploadPic" dw-loading-options="{text: '', spinnerOptions: {radius: 15, length: 11, fps: 15}}">
+                <form enctype="multipart/form-data" name="editProfileForm" id="editProfileForm">
+                    <label class="item item-input">
+                        <span class="input-label">Качи файл:</span>
+                        <input id="file" type="file" name="file" />
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label"> </span>
+                        <button value="Upload" ng-click="changeProfilePic()">Смени снимката</button>
+                    </label>
+                </form>
+            </div>
+
+    <ion-content>
  </ion-view>
-</html>
